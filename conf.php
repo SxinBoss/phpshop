@@ -6,3 +6,4 @@
     define("DBNAME",getenv("SHOPDBNAME"));
     define("DBUSER",getenv("SHOPDBUSER"));
     define("DBPASS",getenv("SHOPDBPASS"));
+	define("DBDSN", 'mysql:host='.DBIP.';port='.DBPORT.';dbname='.DBNAME);
