@@ -1,10 +1,9 @@
 <?php
     include "conf.php";
-    include "NotORM.php";
-    $dbbstr='mysql:host='.DBIP.';port='.DBPORT.';dbname='.DBNAME;
-    $pdo = new PDO('mysql:host='.DBIP.';port='.DBPORT.'; dbname='.DBNAME,DBUSER,DBPASS);
-	
-	$db = new NotORM($pdo);
-    foreach ($db->shop_news() as $news) { // get all applications
-        echo $news['news_title'].'<br />'; // print application title
-    }
+
+    $vName = $_GET["v"];
+    if(''==$vName) $vName='index';
+    include 'MVC/C/index.c';
+    include 'MVC/V/v1/head.tpl';
+    include 'MVC/V/v1/'.$vName.'.tpl';
+    include 'MVC/V/v1/footer.tpl';
