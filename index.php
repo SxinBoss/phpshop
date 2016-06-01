@@ -1,9 +1,17 @@
 <?php
-    include "conf.php";
+    require "conf.php";
+    require "MVC/C/_Main.c";
 
-    $vName = $_GET["v"];
-    if(''==$vName) $vName='index';
-    include 'MVC/C/index.c';
-    include 'MVC/V/v1/head.tpl';
-    include 'MVC/V/v1/'.$vName.'.tpl';
-    include 'MVC/V/v1/footer.tpl';
+    $get_control = isset($_GET['control'])?trim($_GET['control']):'index';
+    $get_action = isset($_GET['action'])?trim($_GET['action']):'index';
+    
+    if(file_exists('MVC/C/'.$get_control.'.c'))
+    {
+        require 'MVC/C/'.$get_control.'.c';
+        $control = new $get_control();
+        if (method_exists($control, $get_action))
+        {
+            $control->$get_action();
+            $control->run();
+        }
+    }
