@@ -1,5 +1,6 @@
 <?php
     define("DB_Prefix", "shop");
+    define('Current_ViewPath', 'v1');
 
     $debug = false;
     if($debug)
